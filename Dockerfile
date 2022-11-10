@@ -6,5 +6,5 @@ FROM alpine:latest
 COPY --from=0 /go/catweb /
 COPY templates/index.html /
 COPY static/* /static/
-EXPOSE 8080
+EXPOSE 5000
 CMD /catweb
