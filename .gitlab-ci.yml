@@ -15,7 +15,7 @@
 # * and continuous deployment to production
 #
 # Test jobs may be disabled by setting environment variables:
-test: TEST_DISABLED
+# test: TEST_DISABLED
 # * code_quality: CODE_QUALITY_DISABLED
 # * license_management: LICENSE_MANAGEMENT_DISABLED
 # * browser_performance: BROWSER_PERFORMANCE_DISABLED
