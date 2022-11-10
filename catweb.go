@@ -15,8 +15,8 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	http.HandleFunc("/", CatHandler)
-	log.Printf("Listening on port 8080!")
-	http.ListenAndServe(":8080", nil)
+	log.Printf("Listening on port 5000!")
+	http.ListenAndServe(":5000", nil)
 }
 
 func random(min, max int) int {
