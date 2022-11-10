@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: catweb
-        image: pvdbleek/catweb-go
+        image: registry.gitlab.com/adess-demos/demo2win/catweb/master:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
