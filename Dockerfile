@@ -1,15 +1,15 @@
+FROM golang:1.19
 
-FROM golang:1.8-alpine
-RUN apk update
-RUN apk add git
-# RUN go get github.com/Unleash/unleash-client-go
-COPY catweb.go /go
+WORKDIR /usr/src/app
 
-RUN go build catweb.go
+# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
 
-FROM alpine:latest
-COPY --from=0 /go/catweb /
-COPY templates/index.html /
+COPY . .
+RUN go build -v -o /usr/local/bin/app ./...
+COPY templates/index.html .
 COPY static/* /static/
 EXPOSE 5000
-CMD /catweb
+CMD ["app"]
+
