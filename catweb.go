@@ -50,7 +50,7 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	// Choose random catpicture
 
 	catpic := 1
-
+	
 	if unleash.IsEnabled("catpic-random"){
 		catpic := random(2, 10)
 	}
