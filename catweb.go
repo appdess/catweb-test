@@ -8,7 +8,22 @@ import (
 	"net/http"
 	"os"
 	"time"
+	"io"
+	"github.com/Unleash/unleash-client-go/v3"
 )
+
+type metricsInterface struct {
+}
+
+func init() {
+    unleash.Initialize(
+        unleash.WithUrl("https://gitlab.com/api/v4/feature_flags/unleash/40951967"),
+        unleash.WithInstanceId("8bZJ99faxtsW3anLf2ak"),
+        unleash.WithAppName("production"), // Set to the running environment of your application
+        unleash.WithListener(&metricsInterface{}),
+    )
+}
+
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
@@ -26,13 +41,19 @@ func random(min, max int) int {
 
 func CatHandler(w http.ResponseWriter, r *http.Request) {
 	//Fetch hostname of container
+
 	name, err := os.Hostname()
 	if err != nil {
 		panic(err)
 	}
 
 	// Choose random catpicture
-	catpic := random(1, 10)
+
+	catpic = 1
+
+	if unleash.IsEnabled("catpic-random"){
+		catpic := random(2, 10)
+	}
 
 	//Parse index.html template
 	t, err := template.ParseFiles("index.html")
