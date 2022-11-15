@@ -1,8 +1,10 @@
+
 FROM golang:1.8-alpine
 RUN apk update
 RUN apk add git
 # RUN go get github.com/Unleash/unleash-client-go
 COPY catweb.go /go
+
 RUN go build catweb.go
 
 FROM alpine:latest
