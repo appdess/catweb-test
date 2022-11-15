@@ -8,7 +8,7 @@ RUN go mod download && go mod verify
 
 COPY . .
 RUN go build -v -o /usr/local/bin/app ./...
-COPY templates/index.html /
+COPY templates/index.html .
 COPY static/* /static/
 EXPOSE 5000
 CMD ["app"]
