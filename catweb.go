@@ -48,10 +48,10 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Choose random catpicture
-	
-	catpic := random(1, 1)
+
+	catpic := random(1, 2)
 	if unleash.IsEnabled("catpic-random"){
-		catpic := random(2, 14)
+		catpic := random(2, 10)
 		fmt.Println(catpic)
 	} else {
         catpic := 1
