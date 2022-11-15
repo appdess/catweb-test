@@ -1,5 +1,7 @@
 FROM golang:latest
-# RUN go get github.com/Unleash/unleash-client-go
+RUN apk update
+RUN apk install git
+RUN go get github.com/Unleash/unleash-client-go
 COPY catweb.go /go
 
 RUN go build catweb.go
