@@ -1,7 +1,8 @@
 FROM golang:alpine3.16
-RUN go get github.com/Unleash/unleash-client-go
 COPY catweb.go /go
-
+COPY go.mod /go
+COPY go.sum /go
+RUN go get github.com/Unleash/unleash-client-go
 RUN go build catweb.go
 
 FROM alpine:latest
