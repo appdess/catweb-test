@@ -1,7 +1,7 @@
 package main
 
 import (
-	_"io"
+	_ "io"
 	"github.com/Unleash/unleash-client-go/v3"
 	"fmt"
 	"html/template"
@@ -49,7 +49,8 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Choose random catpicture
 
-	_catpic := 1
+	catpic := 1
+	_ = catpic
 	
 	if unleash.IsEnabled("catpic-random"){
 		catpic := random(2, 10)
