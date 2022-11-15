@@ -49,12 +49,14 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Choose random catpicture
 
-
+	catpic := random(1, 10)
 	if unleash.IsEnabled("catpic-random"){
 		catpic := random(2, 10)
 	} else {
-        fmt.Println("feature-flag-off")
-
+        catpic := 1
+	}
+	fmt.Println(catpic)
+	
 	//Parse index.html template
 	t, err := template.ParseFiles("index.html")
 	if err != nil {
