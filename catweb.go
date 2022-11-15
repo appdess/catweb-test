@@ -8,8 +8,8 @@ import (
 	"net/http"
 	"os"
 	"time"
-	"io"
-	unleash "github.com/Unleash/unleash-client-go/v3"
+	// "io"
+	"github.com/Unleash/unleash-client-go/v3"
 )
 
 type metricsInterface struct {
