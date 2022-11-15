@@ -73,5 +73,5 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	t.Execute(w, items)
 	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
 
-CatHandler(catpic)
+_, _ = catpic
 }
