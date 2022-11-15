@@ -48,7 +48,7 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	// Choose random catpicture
+	// Enable Grumpy Cat Feature Flag
 	var catpic int
 	if unleash.IsEnabled("grumpy-cat"){
 		catpic = random(11, 15)
