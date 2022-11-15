@@ -9,7 +9,7 @@ import (
 	"os"
 	"time"
 	"io"
-	"github.com/Unleash/unleash-client-go/v3"
+	unleash "github.com/Unleash/unleash-client-go/v3"
 )
 
 type metricsInterface struct {
