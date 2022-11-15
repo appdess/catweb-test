@@ -1,8 +1,8 @@
-FROM golang:alpine3.16
+FROM golang:1.19
+WORKDIR /go
 COPY catweb.go /go
-COPY go.mod /go
-COPY go.sum /go
-RUN go get github.com/Unleash/unleash-client-go
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
 RUN go build catweb.go
 
 FROM alpine:latest
