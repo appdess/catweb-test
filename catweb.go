@@ -1,6 +1,8 @@
 package main
 
 import (
+	"io"
+	"github.com/Unleash/unleash-client-go/v3"
 	"fmt"
 	"html/template"
 	"log"
@@ -8,8 +10,6 @@ import (
 	"net/http"
 	"os"
 	"time"
-	// "io"
-	"github.com/Unleash/unleash-client-go/v3"
 )
 
 type metricsInterface struct {
