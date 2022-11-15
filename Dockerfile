@@ -1,8 +1,5 @@
 FROM golang:1.8-alpine
-WORKDIR /usr/src/app
-COPY go.mod go.sum ./
-COPY . .
-RUN go build -v -o /usr/local/bin/app ./...
+RUN go get github.com/Unleash/unleash-client-go/v3
 COPY catweb.go /go
 RUN go build catweb.go
 
