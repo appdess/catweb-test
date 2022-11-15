@@ -1,4 +1,4 @@
-FROM golang:1.8-alpine
+FROM golang:latest
 # RUN go get github.com/Unleash/unleash-client-go
 COPY catweb.go /go
 
