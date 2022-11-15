@@ -50,11 +50,14 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Enable Grumpy Cat Feature Flag
 	var catpic int
+	var message string
 	if unleash.IsEnabled("grumpy-cat"){
 		catpic = random(11, 15)
+		message = "Grumpy Cat Feature Flag Enabled"
 		
 	} else {
         catpic = random(1, 10)
+		message = "Grumpy Cat is Off - Have Fun :)"
 		
 	}
 
@@ -69,9 +72,11 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	items := struct {
 		Url      int
 		Hostname string
+		Message string
 	}{
 		Url:      catpic,
 		Hostname: name,
+		Message: message,
 	}
 
 	t.Execute(w, items)
