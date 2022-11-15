@@ -1,6 +1,4 @@
-FROM golang:latest
-RUN apk update
-RUN apk install git
+FROM golang:alpine3.16
 RUN go get github.com/Unleash/unleash-client-go
 COPY catweb.go /go
 
