@@ -14,7 +14,7 @@ import (
 
 type metricsInterface struct {
 }
-var catpic int
+
 
 func init() {
     unleash.Initialize(
@@ -49,13 +49,13 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Choose random catpicture
+	var catpic int
 	if unleash.IsEnabled("catpic-random"){
+		catpic = random(1, 10)
 		
-		catpic := random(1, 10)
-		fmt.Println(catpic)
 	} else {
-        catpic := 1
-		fmt.Println(catpic)
+        catpic = 1
+		
 	}
 
 	// fmt.Println(catpic)
