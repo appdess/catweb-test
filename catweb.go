@@ -62,17 +62,6 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 
-	// Enable New Color Feature Flag
-	var newcolor string
-	if unleash.IsEnabled("new-color"){
-		newcolor = "#e24329"
-		
-	} else {
-        newcolor = "#1a0099"
-		
-	}
-
-	// fmt.Println(catpic)
 
 	//Parse index.html template
 	t, err := template.ParseFiles("index.html")
@@ -84,12 +73,10 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 		Url      int
 		Hostname string
 		Message string
-		Newcolor string
 	}{
 		Url:      catpic,
 		Hostname: name,
 		Message: message,
-		Newcolor: newcolor,
 	}
 
 	t.Execute(w, items)
