@@ -64,7 +64,7 @@ variables:
 
   POSTGRES_USER: user
   POSTGRES_PASSWORD: testing-password
-  POSTGRES_ENABLED: "true"
+  POSTGRES_ENABLED: "false"
   POSTGRES_DB: $CI_ENVIRONMENT_SLUG
   TEST_DISABLED: "true"
   DOCKER_DRIVER: overlay2
