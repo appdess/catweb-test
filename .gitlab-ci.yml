@@ -61,7 +61,7 @@ variables:
   # Allows Container-Scanning to correctly correlate image names when using Jobs/Build.gitlab-ci.yml
   CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/$CI_DEFAULT_BRANCH:$CI_COMMIT_SHA
   STAGING_ENABLED: "true"
-  CANARY_ENABLED: "true"
+  CANARY_ENABLED: "false"
   POSTGRES_USER: user
   POSTGRES_PASSWORD: testing-password
   POSTGRES_ENABLED: "false"
