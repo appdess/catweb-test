@@ -104,6 +104,11 @@ stages:
 
 workflow:
   rules:
+    # Disable Pipelines to run when the Release job creates a Git-Tag - otherwise this will trigger the pipeline
+    - if: $CI_COMMIT_TAG
+      when: never
+    - when: always
+
     - if: '$BUILDPACK_URL || $AUTO_DEVOPS_EXPLICITLY_ENABLED == "1" || $DOCKERFILE_PATH'
 
     - exists:
