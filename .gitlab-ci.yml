@@ -3,7 +3,7 @@
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
-
+# bla
 # Auto DevOps
 #
 # This CI/CD configuration provides a standard pipeline for
