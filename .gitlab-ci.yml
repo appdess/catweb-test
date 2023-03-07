@@ -206,5 +206,9 @@ include:
 # this artifact and use the updated CI_APPLICATION_TAG for deployments.
 .auto-deploy:
   dependencies: [build]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == production'
+      when: never
+
 dast_environment_deploy:
   dependencies: [build]
