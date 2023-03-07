@@ -207,7 +207,7 @@ include:
 .auto-deploy:
   dependencies: [build]
   rules:
-    - if: '$CI_COMMIT_BRANCH == production'
+    - if: '$CI_COMMIT_BRANCH == prod'
       when: never
 
 dast_environment_deploy:
