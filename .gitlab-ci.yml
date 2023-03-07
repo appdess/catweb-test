@@ -267,4 +267,3 @@ production:
 
 dast_environment_deploy:
   dependencies: [build]
-
