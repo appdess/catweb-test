@@ -72,7 +72,8 @@ variables:
   # KUBE_INGRESS_BASE_DOMAIN is the application deployment domain and should be set as a variable at the group or project level.
   # KUBE_INGRESS_BASE_DOMAIN: domain.example.com
   # Allows Container-Scanning to correctly correlate image names when using Jobs/Build.gitlab-ci.yml
-  DAST_DISABLED: "true"
+  AUTO_DEPLOY_IMAGE_VERSION: 'v2.47.0'
+#  DAST_DISABLED: "true"
   CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/$CI_DEFAULT_BRANCH:$CI_COMMIT_SHA
   POSTGRES_USER: user
   POSTGRES_PASSWORD: testing-password
@@ -212,7 +213,8 @@ include:
 # this artifact and use the updated CI_APPLICATION_TAG for deployments.
 .auto-deploy:
   dependencies: [build]
-
+  image: "${CI_TEMPLATE_REGISTRY_HOST}/gitlab-org/cluster-integration/auto-deploy-image:${AUTO_DEPLOY_IMAGE_VERSION}"
+  dependencies: []
 
 review:
   extends: .auto-deploy
