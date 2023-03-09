@@ -42,4 +42,36 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	//Fetch hostname of container
 	name, err := os.Hostname()
 	if err != nil {
-		panic(err
+		panic(err)
+	}
+
+	// Enable Grumpy Cat Feature Flag
+	var catpic int
+	var message string
+	if unleash.IsEnabled("grumpy-cat"){
+		catpic = Random(11, 15)
+		message = "Grumpy Cat Feature Flag Enabled"
+	} else {
+        catpic = Random(1, 10)
+		message = "Grumpy Cat is Off - Have Fun :)"
+	}
+
+	//Parse index.html template
+	t, err := template.ParseFiles("index.html")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	items := struct {
+		Url      int
+		Hostname string
+		Message string
+	}{
+		Url:      catpic,
+		Hostname: name,
+		Message: message,
+	}
+
+	t.Execute(w, items)
+	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
+}
