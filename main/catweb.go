@@ -15,7 +15,6 @@ import (
 type metricsInterface struct {
 }
 
-
 func init() {
     unleash.Initialize(
         unleash.WithUrl("https://gitlab.com/api/v4/feature_flags/unleash/40951967"),
@@ -24,7 +23,6 @@ func init() {
         unleash.WithListener(&metricsInterface{}),
     )
 }
-
 
 func main() {
 	fs := http.FileServer(http.Dir("static"))
@@ -35,14 +33,13 @@ func main() {
 	http.ListenAndServe(":5000", nil)
 }
 
-func random(min, max int) int {
+func Random(min, max int) int {
 	rand.Seed(time.Now().Unix())
 	return rand.Intn(max-min) + min
 }
 
 func CatHandler(w http.ResponseWriter, r *http.Request) {
 	//Fetch hostname of container
-
 	name, err := os.Hostname()
 	if err != nil {
 		panic(err)
@@ -52,16 +49,12 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 	var catpic int
 	var message string
 	if unleash.IsEnabled("grumpy-cat"){
-		catpic = random(11, 15)
+		catpic = Random(11, 15)
 		message = "Grumpy Cat Feature Flag Enabled"
-		
 	} else {
-        catpic = random(1, 10)
+        catpic = Random(1, 10)
 		message = "Grumpy Cat is Off - Have Fun :)"
-		
 	}
-
-
 
 	//Parse index.html template
 	t, err := template.ParseFiles("index.html")
@@ -81,5 +74,4 @@ func CatHandler(w http.ResponseWriter, r *http.Request) {
 
 	t.Execute(w, items)
 	log.Printf("%s %s %s\n", r.RemoteAddr, r.Method, r.URL)
-
 }
