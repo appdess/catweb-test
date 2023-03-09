@@ -1,3 +1,6 @@
+// TestRandom tests the random number generator function Random. It checks that the function generates numbers within the expected range
+
+
 package main
 
 import (
