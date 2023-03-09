@@ -79,7 +79,6 @@ variables:
   POSTGRES_PASSWORD: testing-password
   POSTGRES_ENABLED: "false"
   POSTGRES_DB: $CI_ENVIRONMENT_SLUG
-  TEST_DISABLED: "true"
   DOCKER_DRIVER: overlay2
 
   ROLLOUT_RESOURCE_TYPE: deployment
