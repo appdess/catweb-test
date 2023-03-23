@@ -29,6 +29,8 @@ commit-manifests:
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
     - mv kustomize /usr/local/bin/
     - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
+    - git config --global user.email "adess@gitlab.com"
+    - git config --global user.name "alex-dess"
   script:
     - cd manifests
     - sed -i "s|registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:latest|$(cat ../updated-image-tag)|g" deployment.yaml
