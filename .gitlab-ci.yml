@@ -35,6 +35,6 @@ commit-manifests:
     - kustomize build . > k8s-deployment.yaml
     - git add k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests with new image tag"
-    - git push "https://${CI_REGISTRY_USER}:${CI_REGISTRY_PASSWORD}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git" HEAD:main
+    - git push "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git" HEAD:main
   only:
     - main
