@@ -25,7 +25,7 @@ commit-manifests:
     name: docker:latest
     entrypoint: [""]
   before_script:
-    - apk add --no-cache curl git
+    - apk add --no-cache curl git bash
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
     - mv kustomize /usr/local/bin/
     - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
