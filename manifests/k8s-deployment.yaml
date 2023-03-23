@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-application
+  name: my-app
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: my-application
+      app: my-app
   template:
     metadata:
       labels:
-        app: my-application
+        app: my-app
     spec:
       containers:
-      - name: my-application
-        image: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:latest
+      - image: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:b9d5164f8f68dcc589acc0fa2a5b12cdb701c95e
+        name: my-app
         ports:
-        - containerPort: 8080
+        - containerPort: 80
