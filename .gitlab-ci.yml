@@ -1,8 +1,3 @@
-# https://docs.gitlab.com/ee/ci/yaml/#default
-default:
-  tags: [saas-linux-large-amd64]
-
-
 stages:
   - build
   - gitops
@@ -15,6 +10,21 @@ build:
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE/main:latest
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
+  artifacts:
+    paths:
+      - updated-image-tag
+    expire_in: 1 hour
   only:
     - main
+
+# Commit Kubernetes manifests to the same repository
+commit-manifests:
+  stage: gitops
+  image: alpine/git
+  before_script:
+    - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
+  script:
+    - sed -i "s|registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:latest|$(cat updated-image-tag)|g" manifests/k8s-deployment.yaml
+    - git config user.email "gitlab-ci@example.com"
+    - git config user
