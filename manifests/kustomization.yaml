@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
   - deployment.yaml
+  - service.yaml
+
+patchesStrategicMerge:
+- image-pull-secrets-patch.yaml
