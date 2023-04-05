@@ -46,11 +46,9 @@ commit-manifests:
     - cd manifests
     - git remote add gitlab_origin
       "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
-    - cat k8s-deployment.yaml
     - kustomize edit set image
       registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat
       ../updated-image-tag)"
-    - cat k8s-deployment.yaml
     - kustomize build . > prod/k8s-deployment.yaml
     - cat k8s-deployment.yaml
     - git add *
@@ -91,14 +89,9 @@ review_deploy:
     - cd manifests
     - git remote add gitlab_origin
       "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
-    - cp k8s-deployment.yaml review-k8s-deployment.yaml
     - kustomize edit set image
       registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat
       ../updated-image-tag)"
-    - "awk -v review_namespace=\"review-${CI_COMMIT_REF_SLUG}\" '{gsub(/namespace:
-      prod/, \"namespace: \" review_namespace)}1' review-k8s-deployment.yaml >
-      review-k8s-deployment-tmp.yaml && mv review-k8s-deployment-tmp.yaml
-      review-k8s-deployment.yaml"
     - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - "awk -v review_host=\"review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun\"
