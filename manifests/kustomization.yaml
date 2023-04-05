@@ -13,3 +13,5 @@ images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
   newTag: fd2024ad2a8e687906d29477c1cc7edf8f7fbbad
+
+# namespace: review-${CI_COMMIT_REF_SLUG} # override the namespace for review deployment

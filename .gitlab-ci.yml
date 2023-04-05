@@ -92,14 +92,9 @@ review_deploy:
     - kustomize edit set image
       registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat
       ../updated-image-tag)"
+    - kustomize edit set namespace review-${CI_COMMIT_REF_SLUG}
     - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - "awk -v review_host=\"review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun\"
-      '{gsub(/host: prod.catweb.gitops.fun/, \"host: \" review_host)}1'
-      review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml >
-      review/$CI_COMMIT_REF_SLUG/k8s-deployment-tmp.yaml && mv
-      review/$CI_COMMIT_REF_SLUG/k8s-deployment-tmp.yaml
-      review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml"
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
