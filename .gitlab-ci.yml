@@ -89,7 +89,9 @@ review_deploy:
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
-    - git push gitlab_origin HEAD:main -o ci.skip
+    - git fetch gitlab_origin main
+    - git rebase gitlab_origin/main
+    - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://review-$CI_COMMIT_REF_SLUG.catweb.gitops.fun
