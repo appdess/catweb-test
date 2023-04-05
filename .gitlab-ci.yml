@@ -36,9 +36,12 @@ commit-manifests:
   script:
     - cd manifests
     - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
+    - cat k8s-deployment.yaml
     - sed -i "s|registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:latest|$(cat ../updated-image-tag)|g" k8s-deployment.yaml
+    - cat k8s-deployment.yaml
     - kustomize build . > k8s-deployment.yaml
-    - git add k8s-deployment.yaml image-pull-secrets-patch.yaml
+    - git add *
+ #   - git add k8s-deployment.yaml image-pull-secrets-patch.yaml
     - git commit -m "Update Kubernetes manifests with new image tag"
     - git push gitlab_origin HEAD:main -o ci.skip
   only:
