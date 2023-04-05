@@ -114,4 +114,7 @@ review_destroy:
     - git rm review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Remove Kubernetes manifests for review environment"
     - git push gitlab_origin HEAD:main -o ci.skip
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    action: stop
   when: manual
