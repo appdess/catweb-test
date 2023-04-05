@@ -61,6 +61,8 @@ deploy_prod:
   environment:
     name: prod
     url: https://prod.catweb.gitops.fun
+  only:
+    - main
 
 
 
