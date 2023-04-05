@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - prod.catweb.fun
+    - prod.catweb.gitops.fun
     secretName: catweb-tls
   rules:
-  - host: prod.catweb.fun
+  - host: prod.catweb.gitops.fun
     http:
       paths:
       - path: /
