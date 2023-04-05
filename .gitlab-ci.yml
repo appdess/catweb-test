@@ -66,7 +66,6 @@ deploy_prod:
     - main
 
 
-# Commit Kubernetes manifests for the review environment
 review_deploy:
   stage: review
   image: 
@@ -89,8 +88,6 @@ review_deploy:
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
-    - git fetch gitlab_origin main
-    - git rebase gitlab_origin/main
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
   environment:
     name: review/$CI_COMMIT_REF_NAME
@@ -100,6 +97,7 @@ review_deploy:
     - merge_requests
   except:
     - branches
+
 
 
 
