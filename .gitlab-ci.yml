@@ -117,4 +117,8 @@ review_destroy:
   environment:
     name: review/$CI_COMMIT_REF_NAME
     action: stop
+  only:
+    - merge_requests
+  except:
+    - branches
   when: manual
