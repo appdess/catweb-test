@@ -42,7 +42,7 @@ commit-manifests:
     - kustomize edit set image registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat ../updated-image-tag)"
     
     - cat k8s-deployment.yaml
-    - kustomize build . > k8s-deployment.yaml
+    - kustomize build . > prod/k8s-deployment.yaml
     - cat k8s-deployment.yaml
     - git add *
     - git commit -m "Update Kubernetes manifests with new image tag"
