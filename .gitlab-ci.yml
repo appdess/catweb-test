@@ -66,9 +66,6 @@ deploy_prod:
     - main
 
 
-
-
-
 # Commit Kubernetes manifests for the review environment
 review_deploy:
   stage: review
@@ -88,6 +85,7 @@ review_deploy:
     - cp k8s-deployment.yaml review-k8s-deployment.yaml
     - kustomize edit set image registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat ../updated-image-tag)"
     - 'awk -v review_namespace="review-${CI_COMMIT_REF_SLUG}" ''{gsub(/namespace: prod/, "namespace: " review_namespace)}1'' review-k8s-deployment.yaml > review-k8s-deployment-tmp.yaml && mv review-k8s-deployment-tmp.yaml review-k8s-deployment.yaml'
+    - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
@@ -100,6 +98,9 @@ review_deploy:
     - merge_requests
   except:
     - branches
+
+
+
 
 # Remove Kubernetes manifests for the review environment
 review_destroy:
