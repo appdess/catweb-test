@@ -46,7 +46,7 @@ metadata:
   namespace: prod
 spec:
   rules:
-  - host: prod.catweb.gitops.fun
+  - host: review-6-test2.catweb.gitops.fun
     http:
       paths:
       - backend:
