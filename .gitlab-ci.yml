@@ -21,6 +21,7 @@ build:
     expire_in: 1 hour
   only:
     - main
+    - merge_requests
 
 # Commit Kubernetes manifests to the same repository
 commit-manifests:
