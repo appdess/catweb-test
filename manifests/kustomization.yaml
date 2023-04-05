@@ -8,6 +8,8 @@ resources:
 
 patchesStrategicMerge:
 - image-pull-secrets-patch.yaml
+- ingress-host-patch.yaml  # for ingress
+
 
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
