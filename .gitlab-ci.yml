@@ -1,6 +1,7 @@
 stages:
   - build
   - gitops
+  - deploy
 
 #
 # Build and push Docker image using Kaniko
@@ -49,3 +50,12 @@ commit-manifests:
     - git push gitlab_origin HEAD:main -o ci.skip
   only:
     - main
+
+# Create environment in GitLab - actual deployment will be done by flux
+deploy_prod:
+  stage: deploy
+  script:
+    - echo "Deployed manifests only for Environment creation"
+  environment:
+    name: prod
+    url: https://prod.catweb.gitops.fun
