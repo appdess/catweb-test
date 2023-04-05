@@ -86,7 +86,7 @@ script:
     - 'awk -v review_namespace="review-${CI_COMMIT_REF_SLUG}" ''{gsub(/namespace: prod/, "namespace: " review_namespace)}1'' review-k8s-deployment.yaml > review-k8s-deployment-tmp.yaml && mv review-k8s-deployment-tmp.yaml review-k8s-deployment.yaml'
     - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - 'awk -v review_host="review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun" ''{gsub(/host: prod.catweb.gitops.fun/, "host: " review_host)}1'' review/$
+    - 'awk -v review_host="review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun" ''{gsub(/host: prod.catweb.gitops.fun/, "host: " review_host)}1'' review/$"'
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
