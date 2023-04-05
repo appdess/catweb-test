@@ -3,5 +3,18 @@ kind: Ingress
 metadata:
   name: catweb
 spec:
+  tls:
+  - hosts:
+    - review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
+    secretName: catweb-tls
   rules:
-    - host: review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
+  - host: review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: catweb
+            port:
+              number: 80
