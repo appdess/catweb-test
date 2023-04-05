@@ -2,6 +2,7 @@ stages:
   - build
   - gitops
 
+#
 # Build and push Docker image using Kaniko
 build:
   stage: build
