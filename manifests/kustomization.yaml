@@ -12,4 +12,4 @@ patchesStrategicMerge:
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-  newTag: 5516c4929707cfed47bb06b6cc0c00af00e0fffe
+  newTag: fd2024ad2a8e687906d29477c1cc7edf8f7fbbad
