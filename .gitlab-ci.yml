@@ -78,7 +78,7 @@ review_deploy:
     - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
     - git config --global user.email "adess@gitlab.com"
     - git config --global user.name "@project_44576698_bot_350adb3254374f09f5512b067abc866b"
-  script:
+script:
     - cd manifests
     - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
     - cp k8s-deployment.yaml review-k8s-deployment.yaml
@@ -86,6 +86,7 @@ review_deploy:
     - 'awk -v review_namespace="review-${CI_COMMIT_REF_SLUG}" ''{gsub(/namespace: prod/, "namespace: " review_namespace)}1'' review-k8s-deployment.yaml > review-k8s-deployment-tmp.yaml && mv review-k8s-deployment-tmp.yaml review-k8s-deployment.yaml'
     - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - 'awk -v review_host="review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun" ''{gsub(/host: prod.catweb.gitops.fun/, "host: " review_host)}1'' review/$
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
