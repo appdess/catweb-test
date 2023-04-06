@@ -46,7 +46,7 @@ metadata:
   namespace: review-6-test2
 spec:
   rules:
-  - host: review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
+  - host: prod.catweb.gitops.fun
     http:
       paths:
       - backend:
@@ -58,5 +58,5 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
+    - prod.catweb.gitops.fun
     secretName: catweb-tls
