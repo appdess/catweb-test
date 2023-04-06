@@ -1,19 +1,17 @@
+# currently not used this is set in the ci directly with kustomize edit
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: catweb
   namespace: prod
-  annotations:
-    cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    kubernetes.io/ingress.class: "nginx"
 spec:
   tls:
   - hosts:
-    - prod.catweb.gitops.fun
+    - review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
     secretName: catweb-tls
   rules:
-  - host: prod.catweb.gitops.fun
+  - host: review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
     http:
       paths:
       - path: /
