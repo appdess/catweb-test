@@ -8,7 +8,7 @@ resources:
 
 patches:
 - path: image-pull-secrets-patch.yaml
-- path: ingress-host-patch.yaml
+# - path: ingress-host-patch.yaml remove and set directly in review app creation section to remove confusion
 
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
