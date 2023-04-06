@@ -93,7 +93,7 @@ review_deploy:
       registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat
       ../updated-image-tag)"
     - kustomize edit set namespace review-${CI_COMMIT_REF_SLUG}
-    - kustomize edit set host review-${CI_COMMIT_REF_SLUG}catweb.gitops.fun  
+    - kustomize edit set host review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun  
     - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
