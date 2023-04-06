@@ -109,7 +109,7 @@ review_deploy:
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
   environment:
     name: review/$CI_COMMIT_REF_NAME
-    url: https://review-$CI_COMMIT_REF_SLUG.catweb.gitops.fun
+    url: https://$CI_COMMIT_REF_SLUG.catweb.gitops.fun
     on_stop: review_destroy
   only:
     - merge_requests
