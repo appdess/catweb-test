@@ -1,4 +1,9 @@
 ---
+
+default:
+  tags: [saas-linux-large-amd64]
+
+
 stages:
   - build
   - gitops
