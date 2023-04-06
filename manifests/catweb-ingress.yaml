@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - prod.catweb.gitops.fun
+    - review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
     secretName: catweb-tls
   rules:
-  - host: prod.catweb.gitops.fun
+  - host: review-${CI_COMMIT_REF_SLUG}.catweb.gitops.fun
     http:
       paths:
       - path: /
