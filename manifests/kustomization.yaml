@@ -8,10 +8,8 @@ resources:
 
 patches:
 - path: image-pull-secrets-patch.yaml
-# - path: ingress-host-patch.yaml removed and set directly in review app creation section to remove confusion
-
-#images:
-#- name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
-#  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-#  newTag: 14522c717f20b077d02d8d3e32d071f228816158
-#namespace: review-6-test2
+images:
+- name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
+  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
+  newTag: da425e6c14d961e8572b2fed5441b015ab7982ad
+namespace: review-6-test2
