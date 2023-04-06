@@ -101,7 +101,7 @@ review_deploy:
     - kustomize edit set host review-$CI_COMMIT_REF_SLUG.catweb.gitops.fun  
     - mkdir -p review/$CI_COMMIT_REF_SLUG
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - git add .
+#    - git add .
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
     - git push gitlab_origin HEAD:${CI_COMMIT_REF_NAME} -o ci.skip
