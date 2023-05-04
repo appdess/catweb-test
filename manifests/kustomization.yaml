@@ -7,3 +7,6 @@ resources:
 - service.yaml
 - catweb-ingress.yaml
 - image-pull-secret.yaml
+
+patches:
+- path: image-pull-secrets-patch.yaml
