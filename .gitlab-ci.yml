@@ -105,6 +105,7 @@ review_deploy:
     - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
 #    - git add .
     - git fetch gitlab_origin review
+    - git checkout -- .
     - git merge gitlab_origin/review --allow-unrelated-histories -X ours
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
