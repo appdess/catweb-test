@@ -108,7 +108,7 @@ review_deploy:
     - git reset --hard HEAD
     - git clean -fdx  # Remove all untracked files and directories
     - git merge gitlab_origin/review --allow-unrelated-histories -X ours
-    - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - git add -A
     - git commit -m "Update Kubernetes manifests for review environment"
     - git push gitlab_origin HEAD:review -o ci.skip
   environment:
