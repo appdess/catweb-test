@@ -18,3 +18,5 @@ spec:
         name: catweb
         ports:
         - containerPort: 5000
+      imagePullSecrets:
+      - name: gitlab-registry-credentials
