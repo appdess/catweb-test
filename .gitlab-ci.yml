@@ -104,9 +104,11 @@ review_deploy:
     - awk '{gsub(/prod.catweb.gitops.fun/,"'${CI_COMMIT_REF_SLUG}'.catweb.gitops.fun")}1' review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml > review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml
     - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
 #    - git add .
+    - git fetch gitlab_origin review
+    - git merge gitlab_origin/review --allow-unrelated-histories -X ours
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
-    - git push gitlab_origin HEAD:review -o ci.skip # Changed '${CI_COMMIT_REF_NAME}' to 'review' lets see...
+    - git push gitlab_origin HEAD:review -o ci.skip
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://$CI_COMMIT_REF_SLUG.catweb.gitops.fun
