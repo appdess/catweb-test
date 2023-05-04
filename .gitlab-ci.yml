@@ -105,12 +105,12 @@ review_deploy:
     - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
 #    - git add .
     - git fetch gitlab_origin review
-    - git stash save --include-untracked  # Stash untracked files
+    - git checkout -b new_review  # Create a new branch called 'new_review'
     - git merge gitlab_origin/review --allow-unrelated-histories -X ours
-    - git stash apply --index  # Apply the stash
+    - git checkout new_review  # Switch to the new branch
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "Update Kubernetes manifests for review environment"
-    - git push gitlab_origin HEAD:review -o ci.skip
+    - git push gitlab_origin new_review:review -o ci.skip  # Push the new_review branch to the remote review branch
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://$CI_COMMIT_REF_SLUG.catweb.gitops.fun
