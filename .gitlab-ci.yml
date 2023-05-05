@@ -90,6 +90,8 @@ review_deploy:
     - git config --global user.email "adess@gitlab.com"
     - git config --global user.name
       "@project_44576698_bot_350adb3254374f09f5512b067abc866b"
+    - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
+
   script:
     - cd manifests
     - git remote add gitlab_origin
