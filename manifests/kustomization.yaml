@@ -12,5 +12,5 @@ patches:
 - path: image-pull-secrets-patch.yaml
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
-  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
+  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
   newTag: 1c19a24acd1acfd09328f3e464e29eac4307d21d
