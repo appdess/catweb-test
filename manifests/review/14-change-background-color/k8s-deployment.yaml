@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: review-14-change-background-color
+---
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyJyZWdpc3RyeS5naXRsYWIuY29tIjp7InVzZXJuYW1lIjoicHJvamVjdF80NDU3NjY5OF9ib3RfM2EzZjY4N2VlMTkzMTNmMzRjNzllMzU4NjE3NWVhYmUiLCJwYXNzd29yZCI6ImdscGF0LUp2ZURoUzdVdnZBLXV3dHBFTGY0IiwiYXV0aCI6ImNISnZhbVZqZEY4ME5EVTNOalk1T0Y5aWIzUmZNMkV6WmpZNE4yVmxNVGt6TVRObU16UmpOemxsTXpVNE5qRTNOV1ZoWW1VNloyeHdZWFF0U25abFJHaFROMVYyZGtFdGRYZDBjRVZNWmpRPSJ9fX0=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: gitlab-registry-credentials
+  namespace: review-14-change-background-color
+type: kubernetes.io/dockerconfigjson
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catweb
+  namespace: review-14-change-background-color
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: catweb
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catweb
+  namespace: review-14-change-background-color
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catweb
+  template:
+    metadata:
+      labels:
+        app: catweb
+    spec:
+      containers:
+      - image: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:03267de45a8c9ff0d1468b06b8b78379c379e08d
+        name: catweb
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: gitlab-registry-credentials
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+  name: catweb
+  namespace: review-14-change-background-color
+spec:
+  rules:
+  - host: 14-change-background-color.catweb.gitops.fun
+    http:
+      paths:
+      - backend:
+          service:
+            name: catweb
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+  tls:
+  - hosts:
+    - 14-change-background-color.catweb.gitops.fun
+    secretName: catweb-tls
