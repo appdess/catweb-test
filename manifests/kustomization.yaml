@@ -13,5 +13,5 @@ patches:
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-  newTag: e30523b29f37e2c005bdde6d1b81e390ab58b686
-namespace: review-14-change-background-color
+  newTag: 5580db9e300f4f8644ce73c09d890b978af35ae5
+namespace: review-15-policy-test
