@@ -101,10 +101,10 @@ review_deploy:
       ../updated-image-tag)"
     - kustomize edit set namespace review-$CI_COMMIT_REF_SLUG
     - mkdir -p review/$CI_COMMIT_REF_SLUG
-    - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - awk '{gsub(/prod.catweb.gitops.fun/,"'${CI_COMMIT_REF_SLUG}'.catweb.gitops.fun")}1' review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml > review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml
-    - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - kustomize build . > ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - awk '{gsub(/prod.catweb.gitops.fun/,"'${CI_COMMIT_REF_SLUG}'.catweb.gitops.fun")}1' ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml > ../review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml
+    - mv ../review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - git add ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "update manifests for k8s deployment"
 
   environment:
