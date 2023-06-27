@@ -101,8 +101,9 @@ review_deploy:
     - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - awk '{gsub(/prod.catweb.gitops.fun/,"'${CI_COMMIT_REF_SLUG}'.catweb.gitops.fun")}1' review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml > review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml
     - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - git status
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - git commit -m "update manifests for k8s deployment"
+    - git commit -m "update manifests for k8s deployment [skip-ci]"
     - git push gitlab_origin review
 
 
