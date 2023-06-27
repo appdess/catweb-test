@@ -10,4 +10,8 @@ resources:
 
 patches:
 - path: image-pull-secrets-patch.yaml
-
+images:
+- name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
+  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
+  newTag: 6eed37dc744b51d093dbf7daaf54840641e0a23d
+namespace: review-12-make-yellow
