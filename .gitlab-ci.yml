@@ -61,7 +61,7 @@ commit-manifests:
           echo "No changes to commit"
       else
           git commit -m "update manifests for k8s deployment [skip-ci]"
-          git push gitlab_origin review
+          git push gitlab_origin main
       fi
 
 deploy_prod:
