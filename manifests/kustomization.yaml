@@ -10,4 +10,8 @@ resources:
 
 patches:
 - path: image-pull-secrets-patch.yaml
-
+images:
+- name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
+  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
+  newTag: b21d6e5b50c7c7febb018ba409483385a4448f2e
+namespace: prod
