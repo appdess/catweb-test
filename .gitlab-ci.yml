@@ -63,6 +63,10 @@ commit-manifests:
           git commit -m "update manifests for k8s deployment [skip-ci]"
           git push gitlab_origin main
       fi
+ rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+    - when: never
 
 deploy_prod:
   stage: deploy
