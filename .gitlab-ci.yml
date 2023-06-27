@@ -143,9 +143,11 @@ review_destroy:
     - cd manifests
     - git remote add gitlab_origin
       "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
-    - git rm review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - git fetch gitlab_origin review
+    - git checkout review
+    - git rm -r review/$CI_COMMIT_REF_SLUG
     - git commit -m "Remove Kubernetes manifests for review environment"
-    - git push gitlab_origin HEAD:main -o ci.skip
+    - git push gitlab_origin review -o ci.skip
   environment:
     name: review/$CI_COMMIT_REF_NAME
     action: stop
@@ -154,3 +156,4 @@ review_destroy:
   except:
     - branches
   when: manual
+
