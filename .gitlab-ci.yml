@@ -102,6 +102,7 @@ review_deploy:
     - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git status
     - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml kustomization.yaml
+    - echo "checking if any changes were made"
     - |
       if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
