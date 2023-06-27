@@ -13,5 +13,5 @@ patches:
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-  newTag: d759ff31ab0d940b20f3f37329410ce540488472
+  newTag: c0ffe368f893f75f1c6c2f969908a3d8b9a161d6
 namespace: review-12-make-yellow
