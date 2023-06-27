@@ -14,7 +14,9 @@ spec:
         app: catweb
     spec:
       containers:
-      - image: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:24f2b3b9db21ccbab7b338ba0242d3fc44100253
+      - image: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:03267de45a8c9ff0d1468b06b8b78379c379e08d
         name: catweb
         ports:
         - containerPort: 5000
+      imagePullSecrets:
+      - name: gitlab-registry-credentials
