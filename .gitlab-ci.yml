@@ -95,6 +95,7 @@ review_deploy:
     - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
     - git fetch gitlab_origin review
     - git checkout -b review gitlab_origin/review
+    - rm -rf review/$CI_COMMIT_REF_SLUG
     - kustomize edit set image registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat ../updated-image-tag)"
     - kustomize edit set namespace review-$CI_COMMIT_REF_SLUG
     - mkdir -p review/$CI_COMMIT_REF_SLUG
