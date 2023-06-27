@@ -92,19 +92,16 @@ review_deploy:
       "@project_44576698_bot_350adb3254374f09f5512b067abc866b"
   script:
     - cd manifests
-    - git remote add gitlab_origin
-      "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
+    - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
     - git fetch gitlab_origin review
     - git checkout -b review gitlab_origin/review
-    - kustomize edit set image
-      registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat
-      ../updated-image-tag)"
+    - kustomize edit set image registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops=registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:"$(cat ../updated-image-tag)"
     - kustomize edit set namespace review-$CI_COMMIT_REF_SLUG
-    - mkdir -p ../review/$CI_COMMIT_REF_SLUG
-    - kustomize build . > ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - awk '{gsub(/prod.catweb.gitops.fun/,"'${CI_COMMIT_REF_SLUG}'.catweb.gitops.fun")}1' ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml > ../review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml
-    - mv ../review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
-    - git add ../review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - mkdir -p review/$CI_COMMIT_REF_SLUG
+    - kustomize build . > review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - awk '{gsub(/prod.catweb.gitops.fun/,"'${CI_COMMIT_REF_SLUG}'.catweb.gitops.fun")}1' review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml > review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml
+    - mv review/$CI_COMMIT_REF_SLUG/k8s-deployment-updated.yaml review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
+    - git add review/$CI_COMMIT_REF_SLUG/k8s-deployment.yaml
     - git commit -m "update manifests for k8s deployment"
     - git push gitlab_origin review
 
