@@ -12,6 +12,9 @@ stages:
   - deploy
   - review
 
+variables:
+  DAST_WEBSITE: https://$CI_COMMIT_REF_SLUG.catweb.gitops.fun
+
 test:
   stage: test
   image: golang:latest
