@@ -13,5 +13,5 @@ patches:
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-  newTag: 8364d6262a7a7b830df3b6c87341fc551992d147
-namespace: review-17-enable-sast-scanning
+  newTag: ad0ffa1979e4eb74e98ab9bc4261a46ab6e3f595
+namespace: review-18-validate-security
