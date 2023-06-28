@@ -10,6 +10,10 @@ stages:
   - gitops
   - deploy
   - review
+
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
 build:
   stage: build
   image:
@@ -160,5 +164,3 @@ review_destroy:
 
 
 
-include:
-  - template: Security/SAST.gitlab-ci.yml
