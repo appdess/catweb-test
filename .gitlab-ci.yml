@@ -189,7 +189,7 @@ container_scanning:
   dependencies:
     - build
   variables:
-    CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
+    CS_IMAGE: $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
   rules:
     - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
