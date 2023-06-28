@@ -185,8 +185,14 @@ include:
   - template: Jobs/License-Scanning.gitlab-ci.yml
 
 container_scanning:
-  stage: test  # specify the stage if it isn't defined in the included template
+  stage: test
   dependencies:
     - build
   variables:
-    CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
+    CS_IMAGE: $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+
