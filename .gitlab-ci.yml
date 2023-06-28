@@ -11,9 +11,7 @@ stages:
   - deploy
   - review
 
-include:
-  - template: Security/SAST.gitlab-ci.yml
-  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
+
 
 build:
   stage: build
@@ -164,4 +162,6 @@ review_destroy:
   when: manual
 
 
-
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Jobs/Dependency-Scanning.gitlab-ci.yml
