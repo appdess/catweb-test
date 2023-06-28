@@ -180,3 +180,10 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/DAST.gitlab-ci.yml
   - template: Jobs/License-Scanning.gitlab-ci.yml
+
+container_scanning:
+  stage: test  # specify the stage if it isn't defined in the included template
+  dependencies:
+    - build
+  variables:
+    CS_DEFAULT_BRANCH_IMAGE: $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
