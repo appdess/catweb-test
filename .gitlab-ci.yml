@@ -207,4 +207,7 @@ dependency_scanning:
       dependency_scanning: gl-dependency-scanning-report.json
   dependencies: []
   rules:
-    - when: always
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
