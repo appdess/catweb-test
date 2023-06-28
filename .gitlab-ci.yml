@@ -7,6 +7,7 @@ default:
 stages:
   - build
   - test
+  - dast
   - gitops
   - deploy
   - review
