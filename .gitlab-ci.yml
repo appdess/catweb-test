@@ -195,3 +195,16 @@ container_scanning:
       when: always
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: always
+
+
+dependency_scanning:
+  stage: test
+  script:
+    - echo "$CI_JOB_NAME is used for configuration only, and its script should not be executed"
+    - exit 1
+  artifacts:
+    reports:
+      dependency_scanning: gl-dependency-scanning-report.json
+  dependencies: []
+  rules:
+    - when: always
