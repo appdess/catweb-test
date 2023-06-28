@@ -13,7 +13,7 @@ stages:
   - review
 
 variables:
-  DAST_WEBSITE: https://$CI_COMMIT_REF_SLUG.catweb.gitops.fun
+  DAST_WEBSITE: https://prod.catweb.gitops.fun
 
 test:
   stage: test
