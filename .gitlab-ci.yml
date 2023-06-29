@@ -16,7 +16,6 @@ stages:
 variables:
   DAST_WEBSITE: https://prod.catweb.gitops.fun
   FUZZAPI_PROFILE: Quick-10
-  FUZZAPI_OPENAPI: test-api-specification.json
   FUZZAPI_TARGET_URL: https://prod.catweb.gitops.fun
 
 test:
