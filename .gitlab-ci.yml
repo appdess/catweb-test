@@ -8,12 +8,16 @@ stages:
   - build
   - test
   - dast
+  - fuzz
   - gitops
   - deploy
   - review
 
 variables:
   DAST_WEBSITE: https://prod.catweb.gitops.fun
+  FUZZAPI_PROFILE: Quick-10
+  FUZZAPI_OPENAPI: test-api-specification.json
+  FUZZAPI_TARGET_URL: https://prod.catweb.gitops.fun
 
 test:
   stage: test
@@ -176,6 +180,11 @@ review_destroy:
   when: manual
 
 
+
+
+
+
+
 include:
   - template: Security/SAST.gitlab-ci.yml
   - template: Jobs/Dependency-Scanning.gitlab-ci.yml
@@ -183,6 +192,7 @@ include:
   - template: Security/Secret-Detection.gitlab-ci.yml
   - template: Security/DAST.gitlab-ci.yml
   - template: Jobs/License-Scanning.gitlab-ci.yml
+  - template: API-Fuzzing.gitlab-ci.yml
 
 container_scanning:
   stage: test
