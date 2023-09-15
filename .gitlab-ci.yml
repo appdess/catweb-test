@@ -1,5 +1,6 @@
 ---
 # removed DAST Scan to work without deployment
+# license scanning is now doen via the SBOM https://docs.gitlab.com/ee/user/compliance/license_scanning_of_cyclonedx_files/
 
 default:
   tags: [saas-linux-large-amd64]
@@ -188,7 +189,6 @@ include:
   - template: Security/Container-Scanning.gitlab-ci.yml
 #  - template: Security/Secret-Detection.gitlab-ci.yml
 #  - template: Security/DAST.gitlab-ci.yml
-  - template: Jobs/License-Scanning.gitlab-ci.yml
 
 container_scanning:
   stage: test
