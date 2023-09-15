@@ -1,7 +1,7 @@
 ---
 # removed DAST Scan to work without deployment
 # license scanning is now doen via the SBOM https://docs.gitlab.com/ee/user/compliance/license_scanning_of_cyclonedx_files/
-
+# CI_ACCESS_TOKEN needs to be set to commit manifests back
 default:
   tags: [saas-linux-large-amd64]
 
