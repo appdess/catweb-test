@@ -64,7 +64,7 @@ commit-manifests:
     - mv kustomize /usr/local/bin/
     - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
     - git config --global user.email "adess@gitlab.com"
-    - git config --global user.name "@project_44576698_bot_e5a0cb5670cd3595dcf14f0faf9d580a"
+    - git config --global user.name "@project_52715995_bot_6b64d9457f1f7855fd0996d4c2257368"
   script:
     - cd manifests
     - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
@@ -101,7 +101,7 @@ deploy_prod:
     - mv kustomize /usr/local/bin/
     - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
     - git config --global user.email "adess@gitlab.com"
-    - git config --global user.name "@project_44576698_bot_e5a0cb5670cd3595dcf14f0faf9d580a"
+    - git config --global user.name "@project_52715995_bot_6b64d9457f1f7855fd0996d4c2257368"
   script:
     - cd manifests
     - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
@@ -140,7 +140,7 @@ review_deploy:
     - mv kustomize /usr/local/bin/
     - echo "registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
     - git config --global user.email "adess@gitlab.com"
-    - git config --global user.name "@project_44576698_bot_e5a0cb5670cd3595dcf14f0faf9d580a"
+    - git config --global user.name "@project_52715995_bot_6b64d9457f1f7855fd0996d4c2257368"
   script:
     - cd manifests
     - git remote add gitlab_origin "https://oauth2:${CI_ACCESS_TOKEN}@gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}.git"
@@ -187,7 +187,7 @@ review_destroy:
     - apk add --no-cache git
     - git config --global user.email "adess@gitlab.com"
     - git config --global user.name
-      "@project_44576698_bot_e5a0cb5670cd3595dcf14f0faf9d580a"
+      "@project_52715995_bot_6b64d9457f1f7855fd0996d4c2257368"
   script:
     - cd manifests
     - git remote add gitlab_origin
