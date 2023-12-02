@@ -13,5 +13,5 @@ patches:
 images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-  newTag: f9f5f4211d35e9232cbb5ccd18ed789f53aa1c2e
+  newTag: 774a88394a92f92973098ce50f76515cd4d37699
 namespace: prod
