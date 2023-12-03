@@ -6,15 +6,5 @@ resources:
 - deployment.yaml
 - service.yaml
 - catweb-ingress.yaml
-- image-pull-secret.yaml
 
-patches:
-- path: image-pull-secrets-patch.yaml
-images:
-- name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
-  newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
-  newTag: 44be870a6b39a44ad88727d814e0684b12c3fa6d
-- name: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops
-  newName: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops:registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
-  newTag: ec287506da309fccb41f8a02cb0384eaeff48b5e
-namespace: prod
+

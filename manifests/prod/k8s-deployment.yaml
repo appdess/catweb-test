@@ -3,16 +3,7 @@ kind: Namespace
 metadata:
   name: prod
 ---
-apiVersion: v1
-data:
-  .dockerconfigjson: XXX=
-kind: Secret
-metadata:
-  creationTimestamp: null
-  name: gitlab-registry-credentials
-  namespace: prod
-type: kubernetes.io/dockerconfigjson
----
+
 apiVersion: v1
 kind: Service
 metadata:
