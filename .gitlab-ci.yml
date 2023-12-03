@@ -120,6 +120,7 @@ deploy_prod:
       else
           git commit -m "update manifests for k8s deployment [skip-ci]"
           git push gitlab_origin main
+      fi
   environment:
     name: prod
     url: https://prod.catweb.gitops.fun
