@@ -72,3 +72,65 @@ spec:
   url: https://gitlab.com/adess-demos/demo/gitops/catweb-gitops/manifests/prod
   ref:
     branch: main
+
+
+
+### Certificates and Management:
+
+based on: https://www.digitalocean.com/community/tutorials/how-to-set-up-an-nginx-ingress-with-cert-manager-on-digitalocean-kubernetes
+
+### install nginx-ingress
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+helm install quickstart ingress-nginx/ingress-nginx
+
+#### Intall cert-manager
+flux create helmrelease cert-manager \\n  --chart cert-manager \\n  --source HelmRepository/cert-manager.flux-system \\n  --release-name cert-manager \\n  --target-namespace cert-manager \\n  --create-target-namespace \\n  --values values.yaml
+
+``` 
+values.yaml:
+installCRDs: true
+
+letsEncryptClusterIssuer:
+   email: adess@gitlab.com
+
+ingressShim:
+  defaultIssuerKind: "ClusterIssuer"
+  defaultIssuerName: "letsencrypt-prod"
+
+
+global:
+
+  leaderElection:
+    # Override the namespace used to store the ConfigMap for leader election
+    namespace: "gitlab"
+
+```
+
+``` 
+Setup cluster issuer:
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: adess@gitlab.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    # Enable the HTTP-01 challenge provider
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+
+```
+
+For troubleshooting:
+kubectl logs -n cert-manager -l app=cert-manager
+
+
