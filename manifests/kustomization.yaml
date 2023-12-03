@@ -16,5 +16,5 @@ images:
   newTag: 44be870a6b39a44ad88727d814e0684b12c3fa6d
 - name: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops:registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
-  newTag: 647c8e0d25d829cd5c55e2bf3148b1356f495575
+  newTag: ec287506da309fccb41f8a02cb0384eaeff48b5e
 namespace: prod
