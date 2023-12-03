@@ -9,5 +9,5 @@ resources:
 images:
 - name: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops:registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
-  newTag: 37444787d0c75313280dfafa4b646235c6b32dfd
+  newTag: b3ba708fe0e1099c05b33aa05d3b23e5b43d71e6
 namespace: prod
