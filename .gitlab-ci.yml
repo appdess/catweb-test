@@ -98,7 +98,7 @@ commit-manifests:
 
 
 
-review_deploy:
+.review_deploy:
   stage: review
   image:
     name: docker:latest
@@ -147,7 +147,7 @@ review_deploy:
 
 
 
-review_destroy:
+.review_destroy:
   stage: review
   image:
     name: docker:latest
