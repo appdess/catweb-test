@@ -81,12 +81,13 @@ commit-manifests:
     - git status
     - git add ./prod/k8s-deployment.yaml kustomization.yaml
     - git rm prod/test.txt
-    - if git diff-index --quiet HEAD --; then
-        echo "No changes to commit"
-      else
-        git commit -m "update manifests for k8s deployment [skip-ci]"
-        git push gitlab_origin main
-      fi
+  - if git diff-index --quiet HEAD --; then
+      echo "No changes to commit"
+    else
+      git commit -m "update manifests for k8s deployment [skip-ci]"
+      git push gitlab_origin main
+    fi
+    
   environment:
     name: prod
     url: https://prod.catweb.gitops.fun
