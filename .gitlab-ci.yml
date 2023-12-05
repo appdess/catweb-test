@@ -43,6 +43,8 @@ build:
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile
       $CI_PROJECT_DIR/Dockerfile --destination
       $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
+    - echo "registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
+
   artifacts:
     paths:
       - updated-image-tag
