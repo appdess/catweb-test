@@ -81,6 +81,7 @@ commit-manifests:
     - cat ./prod/k8s-deployment.yaml
     - git status
     - git add ./prod/k8s-deployment.yaml kustomization.yaml
+    - if
       if git diff-index --quiet HEAD --; then
         echo "No changes to commit"
       else
