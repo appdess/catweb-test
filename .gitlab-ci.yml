@@ -94,8 +94,7 @@ commit-manifests:
     - if: '$CI_COMMIT_REF_NAME == "main"'
       when: always
     - when: never
-      dependencies:
-    - build
+
 
 
 
