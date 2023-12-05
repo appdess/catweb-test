@@ -80,8 +80,8 @@ commit-manifests:
     - pwd
     - cat ./prod/k8s-deployment.yaml
     - git status
-    - git add ./prod/k8s-deployment.yaml # kustomization.yaml
-    - |
+    - git add ./prod/k8s-deployment.yaml kustomization.yaml
+    - git rm prod/test.txt
       if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
       else
