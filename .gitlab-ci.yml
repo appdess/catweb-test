@@ -76,7 +76,7 @@ commit-manifests:
     - mkdir -p prod
     - kustomize build . > prod/k8s-deployment.yaml
     - git status
-    - git add prod/k8s-deployment.yaml kustomization.yaml
+    - git add k8s-deployment.yaml kustomization.yaml
     - |
       if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
