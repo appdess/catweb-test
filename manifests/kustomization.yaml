@@ -14,4 +14,7 @@ images:
 - name: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops:registry.gitlab.com/adess-demos/demo/app-team/catweb-gitops/main
   newTag: 5e01d2e45e7dba2265166ce2931f1adf3f63f48a
-namespace: review-18-validate-security
+- name: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops
+  newName: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops:registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
+  newTag: 2e309ee794084541a31ba828de5df4e386d397f9
+namespace: review-1-attract-more-users
