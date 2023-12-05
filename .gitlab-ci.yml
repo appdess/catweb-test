@@ -98,7 +98,7 @@ commit-manifests:
 
 
 
-.review_deploy:
+review_deploy:
   stage: review
   image:
     name: docker:latest
@@ -147,7 +147,7 @@ commit-manifests:
 
 
 
-.review_destroy:
+review_destroy:
   stage: review
   image:
     name: docker:latest
@@ -196,7 +196,9 @@ container_scanning:
   variables:
     CS_IMAGE: $CI_REGISTRY_IMAGE/main:$CI_COMMIT_SHA
   rules:
-  - if: '$CI_COMMIT_REF_NAME == "main"'
-    when: always
-  - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    when: always
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always
+
+
