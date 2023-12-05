@@ -53,7 +53,6 @@ build:
     - main
     - merge_requests
 
-    
 commit-manifests:
   stage: gitops
   image:
@@ -80,15 +79,14 @@ commit-manifests:
     - pwd
     - cat ./prod/k8s-deployment.yaml
     - git status
-    - git add ./prod/k8s-deployment.yaml kustomization.yaml
-    - if
+    - git add ./prod/k8s-deployment.yaml
+    - |
       if git diff-index --quiet HEAD --; then
         echo "No changes to commit"
       else
         git commit -m "update manifests for k8s deployment [skip-ci]"
         git push gitlab_origin main
       fi
-      
   environment:
     name: prod
     url: https://prod.catweb.gitops.fun
