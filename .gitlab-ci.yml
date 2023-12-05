@@ -135,8 +135,6 @@ review_deploy:
           git push gitlab_origin review
       fi
 
-
-
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: https://$CI_COMMIT_REF_SLUG.catweb.gitops.fun
@@ -201,4 +199,3 @@ container_scanning:
       when: always
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: always
-
