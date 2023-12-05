@@ -9,7 +9,7 @@ resources:
 images:
 - name: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops
   newName: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops:registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
-  newTag: 1bfef0aa3d2801b5e5dc58f8b757ba73f4238e67
+  newTag: c58d3886cf2024da684c29daf6fdfb6e4e1cb041
 - name: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
   newName: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main
   newTag: b3ba708fe0e1099c05b33aa05d3b23e5b43d71e6
