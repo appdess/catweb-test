@@ -52,8 +52,6 @@ build:
   only:
     - main
     - merge_requests
-
-
 commit-manifests:
   stage: gitops
   image:
@@ -64,7 +62,6 @@ commit-manifests:
     - apk add --no-cache curl git bash
     - curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
     - mv kustomize /usr/local/bin/
-    - echo "registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main:$CI_COMMIT_SHA" > updated-image-tag
     - git config --global user.email "adess@gitlab.com"
     - git config --global user.name "@project_52715995_bot_6b64d9457f1f7855fd0996d4c2257368"
   script:
@@ -73,7 +70,7 @@ commit-manifests:
     - git fetch gitlab_origin main
     - git checkout -b main gitlab_origin/main
     - rm -rf prod/
-    - kustomize edit set image registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops=registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops:"$(cat ../updated-image-tag)"
+    - kustomize edit set image registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops="$(cat ../updated-image-tag)"
     - kustomize edit set namespace prod
     - mkdir -p prod
     - kustomize build . > ./prod/k8s-deployment.yaml
@@ -82,24 +79,21 @@ commit-manifests:
     - git status
     - git add ./prod/k8s-deployment.yaml kustomization.yaml
     - git rm prod/test.txt
-      if git diff-index --quiet HEAD --; then
-          echo "No changes to commit"
+    - if git diff-index --quiet HEAD --; then
+        echo "No changes to commit"
       else
-          git commit -m "update manifests for k8s deployment [skip-ci]"
-          git push gitlab_origin main
+        git commit -m "update manifests for k8s deployment [skip-ci]"
+        git push gitlab_origin main
       fi
-      
   environment:
     name: prod
     url: https://prod.catweb.gitops.fun
-
   rules:
-      - if: '$CI_COMMIT_REF_NAME == "main"'
-        when: always
-      - when: never
-
-
-
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      when: always
+    - when: never
+  dependencies:
+    - build
 
 
 review_deploy:
