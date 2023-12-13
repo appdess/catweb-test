@@ -33,7 +33,7 @@ spec:
         app: catweb
     spec:
       containers:
-      - image: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main:d621b8fca7085c519ddf28481295d01ec8d0c702
+      - image: registry.gitlab.com/adess-demos/demo/gitops/catweb-gitops/main:4acb8353cacbdc904518fccb6c37a0e1d2016caa
         name: catweb
         ports:
         - containerPort: 5000
