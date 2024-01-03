@@ -13,10 +13,10 @@ export GITLAB_TOKEN=glpat-XXXX
 ### In the boostrap Repository:
 
 flux bootstrap gitlab \
-  --owner=adess-demos/demo/app-team \
-  --repository=flux-config \
+  --owner=adess-demos/demo/gitops \
+  --repository=flux \
   --branch=main \
-  --path=./clusters/civo \
+  --path=./clusters/gke \
   --namespace=flux-system
 
 ### App repo
